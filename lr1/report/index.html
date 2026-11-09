@@ -12,12 +12,14 @@
         <link rel="prev" href="../..">
       
       
+        <link rel="next" href="../../lr2/report/">
+      
       
         
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -25,7 +27,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
       
 
@@ -411,6 +413,116 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ЛР2
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ЛР2
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lr2/report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Отчёт
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lr2/practices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Практики 2.1–2.3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -527,245 +639,245 @@
 <h2 id="1-udp">Задание 1. Обмен сообщениями по UDP</h2>
 <p>UDP - протокол без установления соединения. Сокет создаётся с типом <code>SOCK_DGRAM</code>, сообщения отправляются через <code>sendto()</code> и принимаются через <code>recvfrom()</code>, который возвращает данные и адрес отправителя. По этому адресу сервер и отправляет ответ.</p>
 <p>Сервер:</p>
-<pre><code class="language-python">import socket
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">socket</span>
 
-# Создаем UDP сокет
-server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-server_socket.bind(('127.0.0.1', 8081))
-print(&quot;UDP сервер запущен на порту 8081...&quot;)
+<span class="c1"># Создаем UDP сокет</span>
+<span class="n">server_socket</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_DGRAM</span><span class="p">)</span>
+<span class="n">server_socket</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="mi">8081</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"UDP сервер запущен на порту 8081..."</span><span class="p">)</span>
 
-while True:
-    data, addr = server_socket.recvfrom(1024)
-    print(f&quot;Получено от клиента: {data.decode('utf-8')}&quot;)
-    # Отправляем ответ
-    server_socket.sendto(b&quot;Hello, client&quot;, addr)
-</code></pre>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">data</span><span class="p">,</span> <span class="n">addr</span> <span class="o">=</span> <span class="n">server_socket</span><span class="o">.</span><span class="n">recvfrom</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Получено от клиента: </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="c1"># Отправляем ответ</span>
+    <span class="n">server_socket</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="sa">b</span><span class="s2">"Hello, client"</span><span class="p">,</span> <span class="n">addr</span><span class="p">)</span>
+</code></pre></div>
 <p>Клиент:</p>
-<pre><code class="language-python">import socket
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">socket</span>
 
-client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-server_address = ('127.0.0.1', 8081)
+<span class="n">client_socket</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_DGRAM</span><span class="p">)</span>
+<span class="n">server_address</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="mi">8081</span><span class="p">)</span>
 
-client_socket.sendto(b&quot;Hello, server&quot;, server_address)
-data, server = client_socket.recvfrom(1024)
-print(f&quot;Ответ сервера: {data.decode('utf-8')}&quot;)
-client_socket.close()
-</code></pre>
+<span class="n">client_socket</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="sa">b</span><span class="s2">"Hello, server"</span><span class="p">,</span> <span class="n">server_address</span><span class="p">)</span>
+<span class="n">data</span><span class="p">,</span> <span class="n">server</span> <span class="o">=</span> <span class="n">client_socket</span><span class="o">.</span><span class="n">recvfrom</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Ответ сервера: </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">client_socket</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
 <p>Пример работы. Терминал сервера:</p>
-<pre><code>UDP сервер запущен на порту 8081...
+<div class="highlight"><pre><span></span><code>UDP сервер запущен на порту 8081...
 Получено от клиента: Hello, server
-</code></pre>
+</code></pre></div>
 <p>Терминал клиента:</p>
-<pre><code>Ответ сервера: Hello, client
-</code></pre>
+<div class="highlight"><pre><span></span><code>Ответ сервера: Hello, client
+</code></pre></div>
 <h2 id="2-tcp">Задание 2. Вычисления через TCP</h2>
 <p>Вариант 3: поиск площади трапеции.</p>
 <p>TCP требует установить соединение: сервер вызывает <code>bind()</code>, <code>listen()</code> и ждёт клиента в <code>accept()</code>, клиент подключается через <code>connect()</code>. Клиент отправляет два основания и высоту одной строкой через запятую, сервер считает площадь по формуле <code>S = (a + b) / 2 * h</code> и возвращает результат. Если пришли не числа, сервер отвечает сообщением об ошибке.</p>
 <p>Сервер:</p>
-<pre><code class="language-python">import socket
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">socket</span>
 
-server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-# Позволяет сразу перезапускать сервер на том же порту
-server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-server_socket.bind(('127.0.0.1', 8082))
-server_socket.listen(1)
-print(&quot;TCP сервер (площадь трапеции) запущен...&quot;)
+<span class="n">server_socket</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+<span class="c1"># Позволяет сразу перезапускать сервер на том же порту</span>
+<span class="n">server_socket</span><span class="o">.</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SO_REUSEADDR</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">server_socket</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="mi">8082</span><span class="p">))</span>
+<span class="n">server_socket</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"TCP сервер (площадь трапеции) запущен..."</span><span class="p">)</span>
 
-while True:
-    conn, addr = server_socket.accept()
-    data = conn.recv(1024).decode('utf-8')
-    if data:
-        try:
-            # Ожидаем три числа через запятую: &quot;основание a,основание b,высота h&quot;
-            a, b, h = map(float, data.split(','))
-            area = (a + b) / 2 * h
-            conn.send(str(area).encode('utf-8'))
-        except ValueError:
-            conn.send(&quot;Ошибка: нужно ввести три числа&quot;.encode('utf-8'))
-    conn.close()
-</code></pre>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">conn</span><span class="p">,</span> <span class="n">addr</span> <span class="o">=</span> <span class="n">server_socket</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">data</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Ожидаем три числа через запятую: "основание a,основание b,высота h"</span>
+            <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">','</span><span class="p">))</span>
+            <span class="n">area</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">h</span>
+            <span class="n">conn</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">area</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="n">conn</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">"Ошибка: нужно ввести три числа"</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">))</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
 <p>Клиент:</p>
-<pre><code class="language-python">import socket
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">socket</span>
 
-client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client_socket.connect(('127.0.0.1', 8082))
+<span class="n">client_socket</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+<span class="n">client_socket</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="mi">8082</span><span class="p">))</span>
 
-a = input(&quot;Введите длину первого основания: &quot;)
-b = input(&quot;Введите длину второго основания: &quot;)
-h = input(&quot;Введите высоту: &quot;)
+<span class="n">a</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Введите длину первого основания: "</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Введите длину второго основания: "</span><span class="p">)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Введите высоту: "</span><span class="p">)</span>
 
-client_socket.sendall(f&quot;{a},{b},{h}&quot;.encode('utf-8'))
-result = client_socket.recv(1024).decode('utf-8')
-print(f&quot;Площадь трапеции равна: {result}&quot;)
-client_socket.close()
-</code></pre>
+<span class="n">client_socket</span><span class="o">.</span><span class="n">sendall</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">h</span><span class="si">}</span><span class="s2">"</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">))</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">client_socket</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Площадь трапеции равна: </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">client_socket</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
 <p>Пример работы клиента:</p>
-<pre><code>Введите длину первого основания: 4
+<div class="highlight"><pre><span></span><code>Введите длину первого основания: 4
 Введите длину второго основания: 6
 Введите высоту: 5
 Площадь трапеции равна: 25.0
-</code></pre>
+</code></pre></div>
 <h2 id="3-html-http">Задание 3. Раздача HTML-страницы по HTTP</h2>
 <p>HTTP-ответ - это текст в строгом формате: строка статуса, заголовки, пустая строка и тело. Сервер читает <code>index.html</code> (путь берётся относительно самого скрипта, поэтому сервер можно запускать из любой папки), считает длину тела в байтах для заголовка <code>Content-Length</code> и отправляет всё через тот же сокет, который принял подключение. Если файла нет, возвращается статус 404.</p>
 <p>Сервер:</p>
-<pre><code class="language-python">import os
-import socket
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">socket</span>
 
-# index.html лежит рядом со скриптом - так сервер работает из любой папки
-HTML_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'index.html')
+<span class="c1"># index.html лежит рядом со скриптом - так сервер работает из любой папки</span>
+<span class="n">HTML_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)),</span> <span class="s1">'index.html'</span><span class="p">)</span>
 
-server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-# Позволяет сразу перезапускать сервер на том же порту
-server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-server_socket.bind(('127.0.0.1', 8083))
-server_socket.listen(1)
-print(&quot;HTTP сервер запущен на http://127.0.0.1:8083&quot;)
+<span class="n">server_socket</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+<span class="c1"># Позволяет сразу перезапускать сервер на том же порту</span>
+<span class="n">server_socket</span><span class="o">.</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SO_REUSEADDR</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">server_socket</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="mi">8083</span><span class="p">))</span>
+<span class="n">server_socket</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"HTTP сервер запущен на http://127.0.0.1:8083"</span><span class="p">)</span>
 
-while True:
-    conn, addr = server_socket.accept()
-    request = conn.recv(1024)
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">conn</span><span class="p">,</span> <span class="n">addr</span> <span class="o">=</span> <span class="n">server_socket</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
+    <span class="n">request</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
 
-    try:
-        with open(HTML_PATH, 'r', encoding='utf-8') as f:
-            html = f.read()
-        status = &quot;200 OK&quot;
-    except FileNotFoundError:
-        html = &quot;&lt;h1&gt;Error 404: index.html not found&lt;/h1&gt;&quot;
-        status = &quot;404 Not Found&quot;
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">HTML_PATH</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">'utf-8'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">html</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">status</span> <span class="o">=</span> <span class="s2">"200 OK"</span>
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="s2">"&lt;h1&gt;Error 404: index.html not found&lt;/h1&gt;"</span>
+        <span class="n">status</span> <span class="o">=</span> <span class="s2">"404 Not Found"</span>
 
-    # Формируем HTTP-ответ
-    response = (
-        f&quot;HTTP/1.1 {status}\r\n&quot;
-        &quot;Content-Type: text/html; charset=UTF-8\r\n&quot;
-        f&quot;Content-Length: {len(html.encode('utf-8'))}\r\n&quot;
-        &quot;Connection: close\r\n\r\n&quot;
-        f&quot;{html}&quot;
-    )
+    <span class="c1"># Формируем HTTP-ответ</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="sa">f</span><span class="s2">"HTTP/1.1 </span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="se">\r\n</span><span class="s2">"</span>
+        <span class="s2">"Content-Type: text/html; charset=UTF-8</span><span class="se">\r\n</span><span class="s2">"</span>
+        <span class="sa">f</span><span class="s2">"Content-Length: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">))</span><span class="si">}</span><span class="se">\r\n</span><span class="s2">"</span>
+        <span class="s2">"Connection: close</span><span class="se">\r\n\r\n</span><span class="s2">"</span>
+        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">html</span><span class="si">}</span><span class="s2">"</span>
+    <span class="p">)</span>
 
-    conn.sendall(response.encode('utf-8'))
-    conn.close()
-</code></pre>
+    <span class="n">conn</span><span class="o">.</span><span class="n">sendall</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">))</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
 <p>Страница <code>index.html</code>:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;ru&quot;&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;utf-8&quot;&gt;
-    &lt;title&gt;Лабораторная работа 1&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1&gt;Привет от сервера на сокетах!&lt;/h1&gt;
-    &lt;p&gt;Эта страница прочитана из файла index.html и отправлена по HTTP.&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">"ru"</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">"utf-8"</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Лабораторная работа 1<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Привет от сервера на сокетах!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Эта страница прочитана из файла index.html и отправлена по HTTP.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
 <p>Пример ответа сервера (запрос через <code>curl -i http://127.0.0.1:8083/</code>):</p>
-<pre><code>HTTP/1.1 200 OK
+<div class="highlight"><pre><span></span><code>HTTP/1.1 200 OK
 Content-Type: text/html; charset=UTF-8
 Content-Length: 340
 Connection: close
 
 &lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;ru&quot;&gt;
+&lt;html lang="ru"&gt;
 ...
-</code></pre>
+</code></pre></div>
 <h2 id="4">Задание 4. Многопользовательский чат</h2>
 <p>Чат реализован на TCP с потоками. Сервер хранит всех подключённых пользователей в словаре <code>clients</code> (сокет - имя). Для каждого подключения запускается отдельный поток <code>handle_client</code>: первым сообщением клиент присылает своё имя, дальше каждое сообщение рассылается всем остальным функцией <code>broadcast</code>.</p>
 <p>Клиент один и тот же для всех пользователей: его запускают несколько раз в разных терминалах. Имя вводится при запуске, так пользователи идентифицируются. Отдельный поток на клиенте принимает сообщения, а основной читает ввод. Команда <code>exit</code> закрывает соединение, сервер это замечает и сообщает остальным о выходе.</p>
 <p>Сервер:</p>
-<pre><code class="language-python">import socket
-import threading
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">socket</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
 
-clients = {} # {socket: username}
+<span class="n">clients</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># {socket: username}</span>
 
-def handle_client(conn, addr):
-    # Первый пакет - имя пользователя
-    name = conn.recv(1024).decode('utf-8')
-    clients[conn] = name
-    broadcast(f&quot;--- {name} присоединился к чату ---&quot;, conn)
+<span class="k">def</span><span class="w"> </span><span class="nf">handle_client</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">addr</span><span class="p">):</span>
+    <span class="c1"># Первый пакет - имя пользователя</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">)</span>
+    <span class="n">clients</span><span class="p">[</span><span class="n">conn</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="n">broadcast</span><span class="p">(</span><span class="sa">f</span><span class="s2">"--- </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> присоединился к чату ---"</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 
-    while True:
-        try:
-            msg = conn.recv(1024).decode('utf-8')
-            if not msg: break
-            broadcast(f&quot;[{name}]: {msg}&quot;, conn)
-        except:
-            break
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">msg</span><span class="p">:</span> <span class="k">break</span>
+            <span class="n">broadcast</span><span class="p">(</span><span class="sa">f</span><span class="s2">"[</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">]: </span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">break</span>
 
-    del clients[conn]
-    conn.close()
-    broadcast(f&quot;--- {name} покинул чат ---&quot;, None)
+    <span class="k">del</span> <span class="n">clients</span><span class="p">[</span><span class="n">conn</span><span class="p">]</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">broadcast</span><span class="p">(</span><span class="sa">f</span><span class="s2">"--- </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> покинул чат ---"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
-def broadcast(message, sender_conn):
-    # list() - копия, чтобы другой поток не изменил словарь во время обхода
-    for c in list(clients):
-        if c != sender_conn:
-            try:
-                c.send(message.encode('utf-8'))
-            except:
-                pass
+<span class="k">def</span><span class="w"> </span><span class="nf">broadcast</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">sender_conn</span><span class="p">):</span>
+    <span class="c1"># list() - копия, чтобы другой поток не изменил словарь во время обхода</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">clients</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="o">!=</span> <span class="n">sender_conn</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">c</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">))</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">pass</span>
 
-server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-# Позволяет сразу перезапускать сервер на том же порту
-server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-server.bind(('127.0.0.1', 8084))
-server.listen(5)
-print(&quot;Чат-сервер запущен...&quot;)
+<span class="n">server</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+<span class="c1"># Позволяет сразу перезапускать сервер на том же порту</span>
+<span class="n">server</span><span class="o">.</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SO_REUSEADDR</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">server</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="mi">8084</span><span class="p">))</span>
+<span class="n">server</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Чат-сервер запущен..."</span><span class="p">)</span>
 
-while True:
-    conn, addr = server.accept()
-    threading.Thread(target=handle_client, args=(conn, addr)).start()
-</code></pre>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">conn</span><span class="p">,</span> <span class="n">addr</span> <span class="o">=</span> <span class="n">server</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
+    <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">handle_client</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">addr</span><span class="p">))</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</code></pre></div>
 <p>Клиент:</p>
-<pre><code class="language-python">import socket
-import threading
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">socket</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
 
-def receive_messages(sock):
-    while True:
-        try:
-            msg = sock.recv(1024).decode('utf-8')
-            if not msg:
-                print(&quot;Соединение с сервером потеряно.&quot;)
-                break
-            print(msg)
-        except:
-            break
+<span class="k">def</span><span class="w"> </span><span class="nf">receive_messages</span><span class="p">(</span><span class="n">sock</span><span class="p">):</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">sock</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">msg</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">"Соединение с сервером потеряно."</span><span class="p">)</span>
+                <span class="k">break</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">break</span>
 
-client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client.connect(('127.0.0.1', 8084))
+<span class="n">client</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="mi">8084</span><span class="p">))</span>
 
-name = input(&quot;Введите ваше имя: &quot;)
-client.send(name.encode('utf-8'))
+<span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Введите ваше имя: "</span><span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">))</span>
 
-# Запускаем поток для чтения входящих сообщений
-threading.Thread(target=receive_messages, args=(client,), daemon=True).start()
+<span class="c1"># Запускаем поток для чтения входящих сообщений</span>
+<span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">receive_messages</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">client</span><span class="p">,),</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 
-print(&quot;Вы в чате! Вводите сообщения (или 'exit' для выхода):&quot;)
-while True:
-    msg = input()
-    if msg.lower() == 'exit':
-        break
-    if msg:
-        client.send(msg.encode('utf-8'))
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Вы в чате! Вводите сообщения (или 'exit' для выхода):"</span><span class="p">)</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">msg</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">'exit'</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="k">if</span> <span class="n">msg</span><span class="p">:</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">))</span>
 
-client.close()
-</code></pre>
+<span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
 <p>Пример работы с тремя пользователями. Терминал Леры:</p>
-<pre><code>Введите ваше имя: Лера
+<div class="highlight"><pre><span></span><code>Введите ваше имя: Лера
 Вы в чате! Вводите сообщения (или 'exit' для выхода):
 --- Костя присоединился к чату ---
 --- Соня присоединился к чату ---
 Всем привет!
 [Костя]: Привет, Лера
 exit
-</code></pre>
+</code></pre></div>
 <p>Терминал Сони:</p>
-<pre><code>Введите ваше имя: Соня
+<div class="highlight"><pre><span></span><code>Введите ваше имя: Соня
 Вы в чате! Вводите сообщения (или 'exit' для выхода):
 [Лера]: Всем привет!
 [Костя]: Привет, Лера
 --- Лера покинул чат ---
 --- Костя покинул чат ---
-</code></pre>
+</code></pre></div>
 <h2 id="5-get-post">Задание 5. Веб-сервер с GET и POST</h2>
 <p>Сервер вручную разбирает HTTP-запрос: по первой строке определяет метод, а для POST читает тело после пустой строки. Длина тела берётся из заголовка <code>Content-Length</code>, и если тело пришло не целиком, сервер дочитывает его из сокета.</p>
 <p>Оценки хранятся в словаре <code>grades_journal</code>, где ключ - название дисциплины, а значение - список оценок. Поэтому несколько оценок по одному предмету попадают в одну запись, а не в отдельные строки. Перед вставкой в страницу текст проходит через <code>html.escape()</code>, чтобы введённые теги не выполнились как HTML.</p>
@@ -774,87 +886,87 @@ exit
 <li><code>POST /</code> - принимает поля <code>subject</code> и <code>grade</code>, добавляет оценку и возвращает обновлённую страницу.</li>
 </ul>
 <p>Сервер:</p>
-<pre><code class="language-python">import html
-import socket
-import urllib.parse
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">html</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">socket</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">urllib.parse</span>
 
-# Хранилище: {'Математика': ['5', '4'], 'Физика': ['5']}
-grades_journal = {}
+<span class="c1"># Хранилище: {'Математика': ['5', '4'], 'Физика': ['5']}</span>
+<span class="n">grades_journal</span> <span class="o">=</span> <span class="p">{}</span>
 
-server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-# Позволяет сразу перезапускать сервер на том же порту
-server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-server_socket.bind(('127.0.0.1', 8085))
-server_socket.listen(1)
-print(&quot;Сервер журнала запущен на http://127.0.0.1:8085&quot;)
+<span class="n">server_socket</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+<span class="c1"># Позволяет сразу перезапускать сервер на том же порту</span>
+<span class="n">server_socket</span><span class="o">.</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SO_REUSEADDR</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">server_socket</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="mi">8085</span><span class="p">))</span>
+<span class="n">server_socket</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Сервер журнала запущен на http://127.0.0.1:8085"</span><span class="p">)</span>
 
-def render_html():
-    page = &quot;&quot;&quot;
-    &lt;html&gt;&lt;head&gt;&lt;meta charset='utf-8'&gt;&lt;title&gt;Журнал оценок&lt;/title&gt;&lt;/head&gt;
-    &lt;body&gt;
-        &lt;h2&gt;Добавить оценку&lt;/h2&gt;
-        &lt;form method='POST'&gt;
-            &lt;input type='text' name='subject' placeholder='Дисциплина' required&gt;
-            &lt;input type='text' name='grade' placeholder='Оценка' required&gt;
-            &lt;button type='submit'&gt;Сохранить&lt;/button&gt;
-        &lt;/form&gt;
-        &lt;h2&gt;Журнал:&lt;/h2&gt;&lt;ul&gt;
-    &quot;&quot;&quot;
-    for subject, grades in grades_journal.items():
-        # html.escape - чтобы введённый текст не превратился в HTML-теги
-        page += f&quot;&lt;li&gt;&lt;b&gt;{html.escape(subject)}&lt;/b&gt;: {html.escape(', '.join(grades))}&lt;/li&gt;&quot;
-    page += &quot;&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;&quot;
-    return page
+<span class="k">def</span><span class="w"> </span><span class="nf">render_html</span><span class="p">():</span>
+    <span class="n">page</span> <span class="o">=</span> <span class="s2">"""</span>
+<span class="s2">    &lt;html&gt;&lt;head&gt;&lt;meta charset='utf-8'&gt;&lt;title&gt;Журнал оценок&lt;/title&gt;&lt;/head&gt;</span>
+<span class="s2">    &lt;body&gt;</span>
+<span class="s2">        &lt;h2&gt;Добавить оценку&lt;/h2&gt;</span>
+<span class="s2">        &lt;form method='POST'&gt;</span>
+<span class="s2">            &lt;input type='text' name='subject' placeholder='Дисциплина' required&gt;</span>
+<span class="s2">            &lt;input type='text' name='grade' placeholder='Оценка' required&gt;</span>
+<span class="s2">            &lt;button type='submit'&gt;Сохранить&lt;/button&gt;</span>
+<span class="s2">        &lt;/form&gt;</span>
+<span class="s2">        &lt;h2&gt;Журнал:&lt;/h2&gt;&lt;ul&gt;</span>
+<span class="s2">    """</span>
+    <span class="k">for</span> <span class="n">subject</span><span class="p">,</span> <span class="n">grades</span> <span class="ow">in</span> <span class="n">grades_journal</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="c1"># html.escape - чтобы введённый текст не превратился в HTML-теги</span>
+        <span class="n">page</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">"&lt;li&gt;&lt;b&gt;</span><span class="si">{</span><span class="n">html</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">subject</span><span class="p">)</span><span class="si">}</span><span class="s2">&lt;/b&gt;: </span><span class="si">{</span><span class="n">html</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="s1">', '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">grades</span><span class="p">))</span><span class="si">}</span><span class="s2">&lt;/li&gt;"</span>
+    <span class="n">page</span> <span class="o">+=</span> <span class="s2">"&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;"</span>
+    <span class="k">return</span> <span class="n">page</span>
 
-while True:
-    conn, addr = server_socket.accept()
-    request = conn.recv(4096)
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">conn</span><span class="p">,</span> <span class="n">addr</span> <span class="o">=</span> <span class="n">server_socket</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
+    <span class="n">request</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">4096</span><span class="p">)</span>
 
-    if not request:
-        conn.close()
-        continue
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">continue</span>
 
-    # Парсим HTTP-запрос: заголовки отделены от тела пустой строкой
-    headers_part, _, body = request.partition(b'\r\n\r\n')
-    lines = headers_part.decode('utf-8').split('\r\n')
-    method = lines[0].split()[0]
+    <span class="c1"># Парсим HTTP-запрос: заголовки отделены от тела пустой строкой</span>
+    <span class="n">headers_part</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">body</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="sa">b</span><span class="s1">'</span><span class="se">\r\n\r\n</span><span class="s1">'</span><span class="p">)</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">headers_part</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'</span><span class="se">\r\n</span><span class="s1">'</span><span class="p">)</span>
+    <span class="n">method</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
 
-    if method == 'POST':
-        # Узнаем длину тела из заголовка Content-Length
-        content_length = 0
-        for line in lines[1:]:
-            if line.lower().startswith('content-length:'):
-                content_length = int(line.split(':')[1])
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">'POST'</span><span class="p">:</span>
+        <span class="c1"># Узнаем длину тела из заголовка Content-Length</span>
+        <span class="n">content_length</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'content-length:'</span><span class="p">):</span>
+                <span class="n">content_length</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">':'</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
 
-        # Браузер может прислать тело отдельным пакетом - дочитываем его
-        while len(body) &lt; content_length:
-            body += conn.recv(4096)
+        <span class="c1"># Браузер может прислать тело отдельным пакетом - дочитываем его</span>
+        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">body</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">content_length</span><span class="p">:</span>
+            <span class="n">body</span> <span class="o">+=</span> <span class="n">conn</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">4096</span><span class="p">)</span>
 
-        data = urllib.parse.parse_qs(body.decode('utf-8'))
-        subject = data.get('subject', [''])[0].strip()
-        grade = data.get('grade', [''])[0].strip()
+        <span class="n">data</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">parse_qs</span><span class="p">(</span><span class="n">body</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">))</span>
+        <span class="n">subject</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'subject'</span><span class="p">,</span> <span class="p">[</span><span class="s1">''</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">grade</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'grade'</span><span class="p">,</span> <span class="p">[</span><span class="s1">''</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
 
-        if subject and grade:
-            if subject not in grades_journal:
-                grades_journal[subject] = []
-            grades_journal[subject].append(grade)
+        <span class="k">if</span> <span class="n">subject</span> <span class="ow">and</span> <span class="n">grade</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">subject</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">grades_journal</span><span class="p">:</span>
+                <span class="n">grades_journal</span><span class="p">[</span><span class="n">subject</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">grades_journal</span><span class="p">[</span><span class="n">subject</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">grade</span><span class="p">)</span>
 
-    html_content = render_html()
-    response = (
-        &quot;HTTP/1.1 200 OK\r\n&quot;
-        &quot;Content-Type: text/html; charset=utf-8\r\n&quot;
-        f&quot;Content-Length: {len(html_content.encode('utf-8'))}\r\n&quot;
-        &quot;Connection: close\r\n\r\n&quot;
-        f&quot;{html_content}&quot;
-    )
+    <span class="n">html_content</span> <span class="o">=</span> <span class="n">render_html</span><span class="p">()</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">"HTTP/1.1 200 OK</span><span class="se">\r\n</span><span class="s2">"</span>
+        <span class="s2">"Content-Type: text/html; charset=utf-8</span><span class="se">\r\n</span><span class="s2">"</span>
+        <span class="sa">f</span><span class="s2">"Content-Length: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">html_content</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">))</span><span class="si">}</span><span class="se">\r\n</span><span class="s2">"</span>
+        <span class="s2">"Connection: close</span><span class="se">\r\n\r\n</span><span class="s2">"</span>
+        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">html_content</span><span class="si">}</span><span class="s2">"</span>
+    <span class="p">)</span>
 
-    conn.sendall(response.encode('utf-8'))
-    conn.close()
-</code></pre>
+    <span class="n">conn</span><span class="o">.</span><span class="n">sendall</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">))</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
 <p>Пример работы. После трёх запросов (Математика - 5, Физика - 4, Математика - 3) страница содержит:</p>
-<pre><code>Математика: 5, 3
+<div class="highlight"><pre><span></span><code>Математика: 5, 3
 Физика: 4
-</code></pre>
+</code></pre></div>
 <h2 id="_1">Вывод</h2>
 <p>В работе реализованы клиент и сервер на UDP и TCP, отправка HTML-страницы по HTTP, многопользовательский чат на потоках и веб-сервер с обработкой GET и POST. На практике видно, чем отличаются протоколы: в UDP достаточно <code>sendto()</code> и <code>recvfrom()</code>, а в TCP нужно установить соединение, и для нескольких клиентов требуются потоки.</p>
 
@@ -906,10 +1018,10 @@ while True:
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>
